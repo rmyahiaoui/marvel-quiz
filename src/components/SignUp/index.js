@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import {FirebaseContext} from '../Firebase'
 
-const SignUp = () => {
+const SignUp = (props) => {
   const firebase = useContext(FirebaseContext);
   const data = {
     pseudo: '',
@@ -24,6 +24,7 @@ const SignUp = () => {
     firebase.signupUser(email, password)
     .then( authUser => {
         setLoginData({...data});
+        props.history.push('/login')
     })
     .then(() => {
         setLoginData({...data});
